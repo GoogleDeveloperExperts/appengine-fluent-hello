@@ -2,8 +2,8 @@
 
 1. [Download the Google Cloud SDK](https://cloud.google.com/sdk/) and create a billing-enabled project.
 
-2. Enable billing on your project by visiting the page [https://cloud.google.com/console/project/apps~<app_id>](), 
-where <app_id> is the ID of your project. Click on Settings in the left menu and then enable billing.
+2. Enable billing on your project by visiting [https://cloud.google.com/console/project/apps~<app_id>](https://cloud.google.com/console/project/apps~<app_id>), 
+where <app_id> is the ID of your project. Click on **Settings** in the left menu and then **enable billing**.
 
 3. Set the default project to your project's ID using the config command:
 
@@ -11,7 +11,11 @@ where <app_id> is the ID of your project. Click on Settings in the left menu and
 gcloud config set project <project ID>
 ```
 
-4. The first time you use the Cloud SDK, you may be asked to run `gcloud auth login`.
+4. The first time you use the Cloud SDK, you may be asked to run:
+
+```bash
+gcloud auth login
+```
 
 5. Install the app engine gcloud component by invoking the following:
 
@@ -27,8 +31,7 @@ gcloud components update app
  
 7. Configure boot2docker
 
-Boot2docker runs with 2048Mb of memory as a default value. We have to increase
-to 4096 at least.
+Boot2docker runs with 2048Mb of memory by default. It has to be increased to 4096 at least:
 
 ```bash
 boot2docker stop
@@ -42,13 +45,13 @@ boot2docker up
 gcloud preview app setup-managed-vms
 ```
   
-9. Run the application locally
+9. Run the application locally:
 
 ```bash
 gcloud preview app run .
 ```
   
-10. Deploy the application
+10. Deploy the application:
 
 ```bash
 gcloud preview app deploy .
