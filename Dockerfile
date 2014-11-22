@@ -4,11 +4,7 @@
 # Run:
 #   docker run --rm -ti dgageot/managed
 
-FROM dgageot/maven
-
-# Set working directory first
-#
-WORKDIR /managed
+FROM dgageot/docker-fluent
 
 # Set run environment
 #
@@ -19,7 +15,7 @@ CMD java -DPROD_MODE=${PROD_MODE} -Xmx${MEMORY}G -jar target/web.jar
 
 # Add all sources from docker context
 #
-ADD java /managed
+ADD java /app
 
 # Build the app
 # (This command being last, a change in the code triggers a
