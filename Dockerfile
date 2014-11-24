@@ -1,9 +1,3 @@
-# Build:
-#   docker build -t dgageot/managed .
-#
-# Run:
-#   docker run --rm -ti dgageot/managed
-
 FROM dgageot/docker-fluent
 
 # Set run environment
