@@ -8,6 +8,7 @@ public class WebConfiguration implements Configuration {
     routes
       .filter(LogRequestFilter.class)
       .get("/_ah/start", "ok")
+      .get("/_ah/stop", "ok")
       .get("/_ah/health", "ok")
       .get("/greeting", "Welcome to fluent-http");
   }
