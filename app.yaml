@@ -9,5 +9,9 @@ manual_scaling:
 
 handlers:
 
+- url: /(.*\.(gif|png|jpg))$
+  static_files: java/app/\1
+  upload: java/app/.*\.(gif|png|jpg)$
+
 - url: .*
   script: dynamic
