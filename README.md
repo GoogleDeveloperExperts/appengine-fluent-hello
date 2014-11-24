@@ -13,21 +13,21 @@ where <app_id> is the ID of your project. Click on **Settings** in the left menu
 
 3. Set the default project to your project's ID using the config command:
 
-```bash
-gcloud config set project <project ID>
-```
+  ```bash
+  gcloud config set project <project ID>
+  ```
 
 4. The first time you use the Cloud SDK, you may be asked to run:
 
-```bash
-gcloud auth login
-```
+  ```bash
+  gcloud auth login
+  ```
 
 5. Install the app engine gcloud component by invoking the following:
 
-```bash
-gcloud components update app
-```
+  ```bash
+  gcloud components update app
+  ```
   
 6. Install Docker
 
@@ -39,26 +39,26 @@ gcloud components update app
 
 Boot2docker runs with 2048Mb of memory by default. It has to be increased to 4096 at least:
 
-```bash
-boot2docker stop
-VBoxManage modifyvm "boot2docker-vm" --memory "4096"
-boot2docker up
-```
+  ```bash
+  boot2docker stop
+  VBoxManage modifyvm "boot2docker-vm" --memory "4096"
+  boot2docker up
+  ```
 
 8. Download the base App Engine docker images for all runtimes:
 
-```bash
-gcloud preview app setup-managed-vms
-```
+  ```bash
+  gcloud preview app setup-managed-vms
+  ```
   
 9. Run the application locally:
 
-```bash
-gcloud preview app run .
-```
+  ```bash
+  gcloud preview app run .
+  ```
   
 10. Deploy the application:
 
-```bash
-gcloud preview app deploy .
-```
+  ```bash
+  gcloud preview app deploy .
+  ```
