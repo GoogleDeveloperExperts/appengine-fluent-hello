@@ -1,8 +1,10 @@
 .git
 .gitignore
 *.iml
-target
+java/target
 .DS_Store
 .classpath
 .project
 .settings
+app.yaml
+README.md

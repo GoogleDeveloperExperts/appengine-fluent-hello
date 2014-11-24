@@ -15,4 +15,4 @@ ADD java /app
 # (This command being last, a change in the code triggers a
 # minimal rebuild)
 #
-RUN mvn verify dependency:copy-dependencies -DskipTests
+RUN mvn verify dependency:copy-dependencies -Dmaven.test.skip=true -DincludeScope=compile
