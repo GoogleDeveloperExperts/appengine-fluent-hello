@@ -1,5 +1,5 @@
-runtime: custom
 version: 1
+runtime: custom
 vm: true
 api_version: 1
 threadsafe: yes
@@ -8,5 +8,6 @@ manual_scaling:
   instances: 1
 
 handlers:
+
 - url: .*
   script: dynamic
