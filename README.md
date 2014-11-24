@@ -37,7 +37,7 @@ where <app_id> is the ID of your project. Click on **Settings** in the left menu
  
 7. Configure boot2docker
 
-Boot2docker runs with 2048Mb of memory by default. It has to be increased to 4096 at least:
+  Boot2docker runs with 2048Mb of memory by default. It has to be increased to 4096 at least:
 
   ```bash
   boot2docker stop
