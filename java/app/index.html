@@ -1,7 +1,19 @@
 ---
 layout: default
 title: Hello World!
+ng-app: demo
+styles: ['/webjars/bootstrap/3.3.1/css/bootstrap.min.css', '/style.css']
 ---
 
-<h1>Welcome to fluent-http</h1>
-<p>Brought to you by Google App Engine.</p>
+<div class="container-fluid" ng-controller="IndexController as index">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 ng-cloak>{{index.greeting}}</h1>
+
+            <p>Brought to you by Google App Engine.</p>
+        </div>
+    </div>
+</div>
+
+<script src="/webjars/angularjs/1.3.3/angular.min.js"></script>
+<script src="/demo.js"></script>
