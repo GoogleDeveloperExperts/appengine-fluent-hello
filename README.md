@@ -1,3 +1,9 @@
+This is a demonstration project for App Engine Managed VMs.
+It leverages App Engine Docker's support to run a web app
+with Java 8. It uses [fluent-http] web stack.
+
+This application uses this [base image](https://github.com/dgageot/docker-fluent).
+
 ## To use managed VMS
 
 1. [Download the Google Cloud SDK](https://cloud.google.com/sdk/) and create a billing-enabled project.
