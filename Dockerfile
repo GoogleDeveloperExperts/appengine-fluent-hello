@@ -9,7 +9,7 @@ ENTRYPOINT ["java", "-DPROD_MODE=${PROD_MODE}", "-Xmx${MEMORY}G", "-jar", "targe
 
 # Add all sources from docker context
 #
-ADD java /app
+ADD . /app
 
 # Build the app
 # (This command being last, a change in the code triggers a
