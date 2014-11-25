@@ -64,3 +64,10 @@ where <app_id> is the ID of your project. Click on **Settings** in the left menu
   ```bash
   gcloud preview app deploy .
   ```
+
+## If something goes wrong
+
+  ```
+  gcloud preview app modules cancel-deployment [MODULE] --version [VERSION]
+  gcloud preview app modules cancel-deployment default --version 1
+  ```
