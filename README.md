@@ -31,13 +31,13 @@ where <app_id> is the ID of your project. Click on **Settings** in the left menu
   gcloud components update app
   ```
   
-6. Install Docker
+6. Install Docker:
 
  + Mac OS X: http://docs.docker.io/installation/mac/
  + Windows: http://docs.docker.io/installation/windows/
  + Other operating systems: https://docs.docker.com/installation/
  
-7. Configure boot2docker
+7. Configure boot2docker:
 
   Boot2docker runs with 2048Mb of memory by default. It has to be increased to 4096 at least:
 
