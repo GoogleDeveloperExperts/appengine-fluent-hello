@@ -9,9 +9,20 @@ manual_scaling:
 
 handlers:
 
+- url: /webjars/.*
+  script: dynamic
+
 - url: /(.*\.(gif|png|jpg))$
   static_files: app/\1
   upload: app/.*\.(gif|png|jpg)$
+
+- url: /request
+  script: dynamic
+  login: required
+
+- url: /env
+  script: dynamic
+  login: required
 
 - url: .*
   script: dynamic
