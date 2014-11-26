@@ -1,11 +1,12 @@
 .git
 .gitignore
+.idea
 *.iml
 target
 .DS_Store
 .classpath
 .project
 .settings
+snapshots
 app.yaml
 README.md
-snapshots
