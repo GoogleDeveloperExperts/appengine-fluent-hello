@@ -19,6 +19,20 @@
     <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
 
+  <repositories>
+      <repository>
+          <id>sonatype-nexus</id>
+          <name>Sonatype Nexus Snapshots</name>
+          <url>https://oss.sonatype.org/content/repositories/releases/</url>
+          <releases>
+              <enabled>true</enabled>
+          </releases>
+          <snapshots>
+              <enabled>false</enabled>
+          </snapshots>
+      </repository>
+  </repositories>
+
   <build>
     <finalName>web</finalName>
 
@@ -43,7 +57,7 @@
     <dependency>
       <groupId>net.code-story</groupId>
       <artifactId>http</artifactId>
-      <version>2.28</version>
+      <version>2.30</version>
     </dependency>
 
     <!-- WebJars -->
