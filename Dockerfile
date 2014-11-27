@@ -1,1 +1,1 @@
-FROM dgageot/docker-fluent:2.30.5
+FROM dgageot/docker-fluent:2.31
