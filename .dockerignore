@@ -8,5 +8,5 @@ target
 .project
 .settings
 snapshots
-app.yaml
+app*.yaml
 README.md
