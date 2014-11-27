@@ -2,6 +2,7 @@ import com.google.appengine.api.datastore.*;
 import net.codestory.http.Configuration;
 import net.codestory.http.WebServer;
 import net.codestory.http.annotations.Get;
+import net.codestory.http.appengine.AppEngineFilter;
 import net.codestory.http.routes.Routes;
 import net.codestory.http.templating.Model;
 import net.codestory.http.templating.ModelAndView;
@@ -17,29 +18,11 @@ public class MainWeb {
     @Override
     public void configure(Routes routes) {
       routes
-        .filter(AppEngineFilter.class)
-        .add("/_ah", AhResource.class)
-        .add("/api", CloudStorageTestResource.class)
-        .get("/greeting", "Welcome to fluent-http")
-        .get("/env", Model.of("variables", System.getenv()))
-        .get("/request", context -> Model.of("headers", context.request().headers()));
-    }
-  }
-
-  public static class AhResource {
-    @Get("start")
-    public String start() {
-      return "ok";
-    }
-
-    @Get("stop")
-    public String stop() {
-      return "ok";
-    }
-
-    @Get("health?IsLastSuccessful:isLastSuccessful")
-    public String health(String isLastSuccessful) {
-      return "ok";
+          .filter(AppEngineFilter.class)
+          .get("/greeting", "Welcome to fluent-http")
+          .add("/api", CloudStorageTestResource.class)
+          .get("/env", Model.of("variables", System.getenv()))
+          .get("/request", context -> Model.of("headers", context.request().headers()));
     }
   }
 
