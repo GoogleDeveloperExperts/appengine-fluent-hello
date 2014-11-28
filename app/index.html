@@ -4,19 +4,24 @@ title: Hello World!
 ng-app: demo
 ---
 
-<section ng-controller="IndexController as index">
-    <h3 ng-cloak>{{index.greeting}}</h3>
+[[>jumbotron]]
 
-    <img src="/assets/appengine.png"/>
+<div class="container-fluid" ng-controller="IndexController as index">
+    <h3>Messages stored on Google Data Store:</h3>
 
-    <p>Brought to you by Google App Engine.</p>
-
-    <ul>
-        <li><a href="/env">Show environment variables</a></li>
-        <li><a href="/request">Show request parameters</a></li>
-        <li><a href="/api/add/test">Insert entity in cloud storage</a></li>
+    <ul ng-cloak>
+        <li ng-repeat="message in index.messages track by $index">
+            <a href="/api/add/test">{{message}}</a>
+        </li>
     </ul>
-</section>
+
+    <form class="form-inline" role="form">
+        <div class="form-group">
+            <input type="text" ng-model="message" class="form-control" id="message" placeholder="Enter a new message">
+        </div>
+        <button type="submit" class="btn btn-default" ng-click="index.create(message)">Add</button>
+    </form>
+</div>
 
 <script src="/webjars/angularjs/1.3.3/angular.min.js"></script>
 <script src="/demo.js"></script>
