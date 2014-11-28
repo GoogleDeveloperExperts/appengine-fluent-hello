@@ -15,17 +15,5 @@ handlers:
   static_files: app/\1
   upload: app/.*\.(gif|png|jpg)$
 
-- url: /request
-  script: dynamic
-  login: required
-
-- url: /env
-  script: dynamic
-  login: required
-
-- url: /api/.*
-  script: dynamic
-  login: required
-
 - url: .*
   script: dynamic
