@@ -1,1 +1,11 @@
+.git
+.idea
+*.iml
+target
+.DS_Store
+.classpath
+.project
+.settings
 snapshots
+appengine_generated*.yaml
+index.yaml

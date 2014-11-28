@@ -8,5 +8,7 @@ target
 .project
 .settings
 snapshots
-app*.yaml
+app.yaml
+appengine_generated*.yaml
+index.yaml
 README.md
