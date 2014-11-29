@@ -16,11 +16,23 @@
 package gageot.net;
 
 import net.codestory.http.WebServer;
+import net.codestory.http.injection.Singletons;
+import net.codestory.http.routes.Routes;
 import net.codestory.simplelenium.SeleniumTest;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class MainWebTest extends SeleniumTest {
-  WebServer webServer = new WebServer().configure(MainWeb.WebConfiguration.class).startOnRandomPort();
+  WebServer webServer = new WebServer().configure(new MainWeb.WebConfiguration() {
+    @Override
+    public void configure(Routes routes) {
+      super.configure(routes);
+
+      routes.setIocAdapter(new Singletons().register(Messages.class, messages)); // Install dependency mock
+    }
+  }).startOnRandomPort();
 
   @Override
   protected String getDefaultBaseUrl() {
@@ -28,9 +40,39 @@ public class MainWebTest extends SeleniumTest {
   }
 
   @Test
-  public void index() {
+  public void show_messages() {
+    messages.create("Message01");
+    messages.create("Message02");
+
     goTo("/");
 
     find("h2").should().contain("Managed VMs Sample Project");
+    find("#messages").should().contain("Message01", "Message02");
   }
+
+  @Test
+  public void add_message() {
+    messages.create("FirstMessage");
+
+    goTo("/");
+
+    find("#message").fill("SecondMessage");
+    find("#add").click();
+
+    find("#messages").should().contain("FirstMessage", "SecondMessage");
+  }
+
+  Messages messages = new Messages() {
+    private final List<String> messages = new ArrayList<>();
+
+    @Override
+    public List<String> list() {
+      return messages;
+    }
+
+    @Override
+    public void create(String message) {
+      messages.add(message);
+    }
+  };
 }

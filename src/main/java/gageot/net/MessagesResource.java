@@ -15,36 +15,25 @@
  */
 package gageot.net;
 
-import com.google.appengine.api.datastore.Entity;
-import com.google.appengine.api.datastore.Query;
 import net.codestory.http.annotations.Get;
 import net.codestory.http.annotations.Post;
 
-import java.util.Date;
 import java.util.List;
 
-import static com.google.appengine.api.datastore.DatastoreServiceFactory.getDatastoreService;
-import static com.google.appengine.api.datastore.FetchOptions.Builder.withLimit;
-import static com.google.appengine.api.datastore.KeyFactory.createKey;
-import static com.google.appengine.api.datastore.Query.SortDirection.DESCENDING;
-import static net.codestory.Fluent.of;
-
 public class MessagesResource {
+  private final Messages messages;
+
+  public MessagesResource(Messages messages) {
+    this.messages = messages;
+  }
+
   @Get("/message/list")
   public List<String> list() {
-    Query query = new Query("Message", createKey("Messages", "list")).addSort("date", DESCENDING);
-
-    List<Entity> messages = getDatastoreService().prepare(query).asList(withLimit(100));
-
-    return of(messages).map(message -> (String) message.getProperty("message")).toList();
+    return messages.list();
   }
 
   @Post("/message")
   public void create(String message) {
-    Entity entity = new Entity("Message", createKey("Messages", "list"));
-    entity.setProperty("message", message);
-    entity.setProperty("date", new Date());
-
-    getDatastoreService().put(entity);
+    messages.create(message);
   }
 }

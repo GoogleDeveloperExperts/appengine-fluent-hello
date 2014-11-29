@@ -9,7 +9,7 @@ ng-app: demo
 <div class="container-fluid" ng-controller="IndexController as index">
     <h3>Messages stored on Google Data Store:</h3>
 
-    <ul ng-cloak>
+    <ul id="messages" ng-cloak>
         <li ng-repeat="message in index.messages track by $index">
             {{message}}
         </li>
@@ -19,7 +19,7 @@ ng-app: demo
         <div class="form-group">
             <input type="text" ng-model="message" class="form-control" id="message" placeholder="Enter a new message">
         </div>
-        <button type="submit" class="btn btn-default" ng-click="index.create(message)">Add</button>
+        <button id="add" type="submit" class="btn btn-default" ng-click="index.create(message)">Add</button>
     </form>
 </div>
 
