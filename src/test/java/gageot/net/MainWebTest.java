@@ -15,9 +15,9 @@
  */
 package gageot.net;
 
+import net.codestory.http.Configuration;
 import net.codestory.http.WebServer;
 import net.codestory.http.injection.Singletons;
-import net.codestory.http.routes.Routes;
 import net.codestory.simplelenium.SeleniumTest;
 import org.junit.Test;
 
@@ -25,14 +25,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainWebTest extends SeleniumTest {
-  WebServer webServer = new WebServer().configure(new MainWeb.WebConfiguration() {
-    @Override
-    public void configure(Routes routes) {
-      super.configure(routes);
+  Messages messages = new Messages() {
+    private final List<String> messages = new ArrayList<>();
 
-      routes.setIocAdapter(new Singletons().register(Messages.class, messages)); // Install dependency mock
+    @Override
+    public List<String> list() {
+      return messages;
     }
-  }).startOnRandomPort();
+
+    @Override
+    public void create(String message) {
+      messages.add(message);
+    }
+  };
+
+  WebServer webServer = new WebServer().configure(
+      override(new MainWeb.WebConfiguration())
+          .with(routes -> routes.setIocAdapter(new Singletons().register(Messages.class, messages))));
 
   @Override
   protected String getDefaultBaseUrl() {
@@ -62,17 +71,22 @@ public class MainWebTest extends SeleniumTest {
     find("#messages").should().contain("FirstMessage", "SecondMessage");
   }
 
-  Messages messages = new Messages() {
-    private final List<String> messages = new ArrayList<>();
+  private static ConfigurationOverride override(Configuration configuration) {
+    return new ConfigurationOverride(configuration);
+  }
 
-    @Override
-    public List<String> list() {
-      return messages;
+  private static class ConfigurationOverride {
+    private final Configuration configuration;
+
+    public ConfigurationOverride(Configuration configuration) {
+      this.configuration = configuration;
     }
 
-    @Override
-    public void create(String message) {
-      messages.add(message);
+    public Configuration with(Configuration override) {
+      return routes -> {
+        configuration.configure(routes);
+        override.configure(routes);
+      };
     }
-  };
+  }
 }
