@@ -39,9 +39,10 @@ public class MainWebTest extends SeleniumTest {
     }
   };
 
-  WebServer webServer = new WebServer().configure(
-      override(new MainWeb.WebConfiguration())
-          .with(routes -> routes.setIocAdapter(new Singletons().register(Messages.class, messages))));
+  WebServer webServer = new WebServer()
+    .configure(override(new MainWeb.WebConfiguration())
+      .with(routes -> routes.setIocAdapter(new Singletons().register(Messages.class, messages))))
+    .startOnRandomPort();
 
   @Override
   protected String getDefaultBaseUrl() {
